@@ -1,20 +1,17 @@
-
 <?php
 session_start();
-
-
 if (!isset($_SESSION['username'])) {
-    header("Location: index.html"); 
+    header("Location: index.html");
     exit();
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Recipe Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,20 +20,33 @@ if (!isset($_SESSION['username'])) {
             background-color: #f4f4f4;
             color: #333;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
         .header {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
         }
-        .content {
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .nav a {
+            float: left;
+            display: block;
+            color: white;
             text-align: center;
-            padding: 50px;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
         }
         .btn-logout {
             background-color: #f44336;
@@ -54,18 +64,23 @@ if (!isset($_SESSION['username'])) {
     </style>
 </head>
 <body>
+
     <div class="header">
-        <h1>Welcome to Your Dashboard</h1>
+        <h1>Recipe Management System</h1>
+    </div>
+
+    <div class="nav">
+        <a href="dashboard.php">Home</a>
+        <a href="index.php">View Recipes</a>
+        <a href="add_recipe.php">Add Recipe</a>
+        <a href="favorites.php">Favorite Recipes</a>
+        <a href="logout.php" class="btn-logout" style="float:right;">Logout</a>
     </div>
 
     <div class="container">
-        <div class="content">
-            <h2>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-            <p>Welcome to your dashboard. Here you can manage your account and settings.</p>
-
-        
-            <a href="logout.php" class="btn-logout">Logout</a>
-        </div>
+        <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+        <p>Manage your recipes and explore new ones.</p>
     </div>
+
 </body>
 </html>
