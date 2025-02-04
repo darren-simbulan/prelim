@@ -23,7 +23,7 @@ if (!isset($_SESSION['username'])) {
     </div>
 
     <div class="nav">
-        <a href="dashboard.php">Home</a>
+        <a href="welcome.php">Home</a>
         <a href="index.php">View Recipes</a>
         <a href="add_recipe.php">Add Recipe</a>
         <a href="favorites.php">Favorite Recipes</a>

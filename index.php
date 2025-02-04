@@ -125,7 +125,7 @@ $result = $conn->query($sql);
     </div>
 
     <div class="nav">
-        <a href="dashboard.php">Home</a>
+        <a href="welcome.php">Home</a>
         <a href="index.php">View Recipes</a>
         <a href="add_recipe.php">Add Recipe</a>
         <a href="favorites.php">Favorite Recipes</a>
@@ -147,19 +147,23 @@ $result = $conn->query($sql);
         </form>
 
         <div class="recipe-container">
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="recipe-card">
-                    <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['title']) ?>">
-                    <div class="details">
-                        <h2><?= htmlspecialchars($row['title']) ?></h2>
-                        <p><strong>Submitted by:</strong> <?= htmlspecialchars($row['username']) ?></p>
-                        <p>Category: <?= htmlspecialchars($row['category']) ?></p>
-                        <a href="recipe.php?id=<?= $row['id'] ?>">View Recipe</a>
-                    </div>
-                </div>
-            <?php endwhile; ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="recipe-card">
+            <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['title']) ?>" width="200">
+            <h2><?= htmlspecialchars($row['title']) ?></h2>
+            <p><strong>Submitted by:</strong> <?= htmlspecialchars($row['username']) ?></p>
+            <p>Category: <?= htmlspecialchars($row['category']) ?></p>
+            <a href="recipe.php?id=<?= $row['id'] ?>">View Recipe</a>
+
+            <!-- Add to Favorites Button -->
+            <form action="add_favorite.php" method="POST">
+                <input type="hidden" name="recipe_id" value="<?= $row['id'] ?>">
+                <button type="submit">❤️ Add to Favorites</button>
+            </form>
         </div>
-    </div>
+    <?php endwhile; ?>
+</div>
+
 
 </body>
 </html>
